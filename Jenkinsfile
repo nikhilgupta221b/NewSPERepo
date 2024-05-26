@@ -72,6 +72,7 @@ pipeline {
                         sh "kubectl apply -f k8s/backend-deployment.yaml"
                         sh "kubectl apply -f k8s/frontend-deployment.yaml"
                         sh "kubectl apply -f k8s/frontend-service.yaml"
+                        sh "kubectl apply -f k8s/ingress.yaml"
                     }
                 }
             }
