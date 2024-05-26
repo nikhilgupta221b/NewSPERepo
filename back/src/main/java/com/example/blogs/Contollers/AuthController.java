@@ -1,4 +1,4 @@
-package com.example.blogs.Contollers;
+package com.example.blogs.Controllers;
 
 import com.example.blogs.Repositories.UserRepository;
 import com.example.blogs.entities.User;
@@ -19,22 +19,22 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
-import java.security.Principal;
-
-
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import com.example.blogs.security.CustomUserDetailService;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/auth")
 public class AuthController {
+
+    private static final Logger logger = LogManager.getLogger(AuthController.class);
+
     @Autowired
     private JwtTokenHelper jwtTokenHelper;
 
     @Autowired
-    private UserDetailsService userDetailsService;
+    private CustomUserDetailService userDetailsService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -44,6 +44,7 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepo;
+
     @Autowired
     private ModelMapper mapper;
 
@@ -52,53 +53,54 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest request) throws Exception {
-        this.authenticate(request.getUsername(), request.getPassword());
-       User userDetails = userService.findByUsername(request.getUsername());
+        try {
+            this.authenticate(request.getUsername(), request.getPassword());
+            User userDetails = userService.findByUsername(request.getUsername());
 
-        if(passwordEncoder.matches(request.getPassword(), userDetails.getPassword())) {
+            if (passwordEncoder.matches(request.getPassword(), userDetails.getPassword())) {
+                String token = jwtTokenHelper.generateToken(userDetails.getUsername());
 
-            String token = jwtTokenHelper.generateToken(userDetails.getUsername());
-
-           JwtAuthResponse response = new JwtAuthResponse();
-           response.setToken(token);
-          response.setUser(this.mapper.map((User) userDetails, UserDto.class));
-           return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
-          //  return ResponseEntity.ok().body("Successfully logged In.");
+                JwtAuthResponse response = new JwtAuthResponse();
+                response.setToken(token);
+                response.setUser(this.mapper.map(userDetails, UserDto.class));
+                logger.info("User logged in successfully: " + userDetails.getUsername());
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            } else {
+                logger.warn("Failed login attempt for username: " + request.getUsername());
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            }
+        } catch (Exception e) {
+            logger.error("Login failed for user: " + request.getUsername(), e);
+            throw e;
         }
-
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    private void authenticate(String username, String password) throws Exception {
-
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username,
-                password);
-
+    private void authenticate(String username, String password) throws ApiException {
         try {
-
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
             authenticationManager.authenticate(authenticationToken);
-
         } catch (BadCredentialsException e) {
-            System.out.println("Invalid Detials !!");
+            logger.error("Authentication failed for user: " + username, e);
             throw new ApiException("Invalid username or password !!");
         }
-
     }
-
-    // register new user api
 
     @PostMapping("/register")
     public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto) {
-        UserDto registeredUser = this.userService.registerNewUser(userDto);
-        return new ResponseEntity<UserDto>(registeredUser, HttpStatus.CREATED);
+        try {
+            UserDto registeredUser = this.userService.registerNewUser(userDto);
+            logger.info("New user registered: " + userDto.getEmail());
+            return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            logger.error("Registration failed for user: " + userDto.getEmail(), e);
+            throw new ApiException("Registration failed", e);
+        }
     }
 
-    // get loggedin user data
-
-
-//    @GetMapping("/current-user/")
-//    public ResponseEntity<UserDto> getUser(Principal principal) {
-//        User user = this.userRepo.findByEmail(principal.getName()).get();
-//        return new ResponseEntity<UserDto>(this.mapper.map(user, UserDto.class), HttpStatus.OK);
-//    }
+    // Uncomment and update if needed
+    // @GetMapping("/current-user/")
+    // public ResponseEntity<UserDto> getUser(Principal principal) {
+    //     User user = this.userRepo.findByEmail(principal.getName()).get();
+    //     return new ResponseEntity<UserDto>(this.mapper.map(user, UserDto.class), HttpStatus.OK);
+    // }
 }

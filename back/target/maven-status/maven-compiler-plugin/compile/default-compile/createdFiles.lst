@@ -2,6 +2,7 @@ com/example/blogs/exceptions/GlobalExceptionHandler.class
 com/example/blogs/payloads/JwtAuthRequest.class
 com/example/blogs/services/PostService.class
 com/example/blogs/config/AppConstants.class
+com/example/blogs/Controllers/AuthController.class
 com/example/blogs/config/CustomModelMapper.class
 com/example/blogs/services/FileService.class
 com/example/blogs/entities/Category.class
@@ -34,7 +35,6 @@ com/example/blogs/Contollers/PostController.class
 com/example/blogs/security/JwtAuthenticationFilter.class
 com/example/blogs/entities/Role.class
 com/example/blogs/services/implementations/CategoryImplementation.class
-com/example/blogs/Contollers/AuthController.class
 com/example/blogs/entities/Comment.class
 com/example/blogs/Contollers/CategoryController.class
 com/example/blogs/config/CorsConfig.class
@@ -42,4 +42,4 @@ com/example/blogs/payloads/ApiResponse.class
 com/example/blogs/payloads/CategoryDto.class
 com/example/blogs/payloads/UserDto.class
 com/example/blogs/entities/Post.class
-com/example/blogs/Contollers/UserController.class
+com/example/blogs/Controllers/UserController.class
