@@ -65,13 +65,13 @@ pipeline {
                 dir('/var/lib/jenkins/workspace/NewSPEAgain/') {
                     script {
                         // Use kubectl to apply the Kubernetes configurations with verbose output
-                        sh "kubectl apply --verbose -f k8s/persistent_volume.yaml"
-                        sh "kubectl apply --verbose -f k8s/mysql-service.yaml"
-                        sh "kubectl apply --verbose -f k8s/mysql-deployment.yaml"
-                        sh "kubectl apply --verbose -f k8s/backend-service.yaml"
-                        sh "kubectl apply --verbose -f k8s/backend-deployment.yaml"
-                        sh "kubectl apply --verbose -f k8s/frontend-deployment.yaml"
-                        sh "kubectl apply --verbose -f k8s/frontend-service.yaml"
+                        sh "kubectl apply -f k8s/persistent_volume.yaml"
+                        sh "kubectl apply -f k8s/mysql-service.yaml"
+                        sh "kubectl apply -f k8s/mysql-deployment.yaml"
+                        sh "kubectl apply -f k8s/backend-service.yaml"
+                        sh "kubectl apply -f k8s/backend-deployment.yaml"
+                        sh "kubectl apply -f k8s/frontend-deployment.yaml"
+                        sh "kubectl apply -f k8s/frontend-service.yaml"
                     }
                 }
             }
