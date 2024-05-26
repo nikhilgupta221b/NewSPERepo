@@ -30,7 +30,7 @@
 import axios from "axios";
 import { getToken } from "../auth";
 
-export const BASE_URL = "http://192.168.49.2:9090/api/v1";
+export const BASE_URL = "http://blogspe.com/api/v1";
 // export const BASE_URL = "https://apis.lcwdblogs.online/api/v1";
 
 export const myAxios = axios.create({
