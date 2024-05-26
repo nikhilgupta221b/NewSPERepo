@@ -4,7 +4,7 @@ pipeline {
     environment {
         FRONTEND_IMAGE = 'nikhilguptaiiitb/frontend-app'
         BACKEND_IMAGE = 'nikhilguptaiiitb/backend-app'
-        KUBECONFIG = '/path/to/kubeconfig' // Ensure this path points to your kubeconfig file
+        KUBECONFIG = '/var/lib/jenkins/.kube/config'
     }
 
     stages {
@@ -64,14 +64,14 @@ pipeline {
             steps {
                 dir('/var/lib/jenkins/workspace/NewSPEAgain/') {
                     script {
-                        // Use kubectl to apply the Kubernetes configurations
-                        sh "kubectl apply -f k8s/persistent_volume.yaml"
-                        sh "kubectl apply -f k8s/mysql-service.yaml"
-                        sh "kubectl apply -f k8s/mysql-deployment.yaml"
-                        sh "kubectl apply -f k8s/backend-service.yaml"
-                        sh "kubectl apply -f k8s/backend-deployment.yaml"
-                        sh "kubectl apply -f k8s/frontend-deployment.yaml"
-                        sh "kubectl apply -f k8s/frontend-service.yaml"
+                        // Use kubectl to apply the Kubernetes configurations with verbose output
+                        sh "kubectl apply --verbose -f k8s/persistent_volume.yaml"
+                        sh "kubectl apply --verbose -f k8s/mysql-service.yaml"
+                        sh "kubectl apply --verbose -f k8s/mysql-deployment.yaml"
+                        sh "kubectl apply --verbose -f k8s/backend-service.yaml"
+                        sh "kubectl apply --verbose -f k8s/backend-deployment.yaml"
+                        sh "kubectl apply --verbose -f k8s/frontend-deployment.yaml"
+                        sh "kubectl apply --verbose -f k8s/frontend-service.yaml"
                     }
                 }
             }
