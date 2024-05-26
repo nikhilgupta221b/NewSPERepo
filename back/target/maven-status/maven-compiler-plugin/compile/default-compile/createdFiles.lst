@@ -6,7 +6,6 @@ com/example/blogs/config/CustomModelMapper.class
 com/example/blogs/services/FileService.class
 com/example/blogs/entities/Category.class
 com/example/blogs/config/SecurityConfig.class
-com/example/blogs/BlogsApplication$AdminIntiailizer.class
 com/example/blogs/Repositories/CommentRepository.class
 com/example/blogs/services/CategoryService.class
 com/example/blogs/Repositories/CategoryRepository.class
@@ -15,6 +14,7 @@ com/example/blogs/services/implementations/CommentImplementation.class
 com/example/blogs/services/implementations/PostImplementation.class
 com/example/blogs/exceptions/ApiException.class
 com/example/blogs/services/CommentService.class
+com/example/blogs/BlogsApplication$AdminInitializer.class
 com/example/blogs/BlogsApplication.class
 com/example/blogs/security/JwtTokenHelper.class
 com/example/blogs/exceptions/ResourceNotFoundException.class
