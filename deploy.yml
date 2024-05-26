@@ -1,0 +1,9 @@
+---
+- name: Deploy Blog Application
+  hosts: local
+  tasks:
+    - name: Deploy application using Docker Compose
+      shell: docker-compose up -d
+      args:
+        chdir: "{{ playbook_dir }}"
+
