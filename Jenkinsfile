@@ -20,6 +20,7 @@ pipeline {
                 ])
             }
         }
+
         stage('Docker Cleanup') {
             steps {
                 script {
@@ -63,7 +64,13 @@ pipeline {
             steps {
                 script {
                     // Use kubectl to apply the Kubernetes configurations
-                    sh "kubectl apply -f k8s/*.yaml"
+                    sh "kubectl apply -f k8s/persistent_volume.yaml"
+                    sh "kubectl apply -f k8s/mysql-service.yaml"
+                    sh "kubectl apply -f k8s/mysql-deployment.yaml"
+                    sh "kubectl apply -f k8s/backend-service.yaml"
+                    sh "kubectl apply -f k8s/backend-deployment.yaml"
+                    sh "kubectl apply -f k8s/frontend-deployment.yaml"
+                    sh "kubectl apply -f k8s/frontend-service.yaml"
                 }
             }
         }
