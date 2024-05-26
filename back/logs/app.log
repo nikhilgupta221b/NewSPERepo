@@ -158,3 +158,31 @@
 2024-05-26 20:58:49 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-05-26 20:58:49 INFO  HikariDataSource:350 - HikariPool-1 - Shutdown initiated...
 2024-05-26 20:58:49 INFO  HikariDataSource:352 - HikariPool-1 - Shutdown completed.
+2024-05-26 21:01:25 INFO  AnnotationConfigContextLoaderUtils:83 - Could not detect default configuration classes for test class [com.example.blogs.BlogsApplicationTests]: BlogsApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2024-05-26 21:01:25 INFO  SpringBootTestContextBootstrapper:234 - Found @SpringBootConfiguration com.example.blogs.BlogsApplication for test class com.example.blogs.BlogsApplicationTests
+2024-05-26 21:01:26 INFO  RestartApplicationListener:74 - Restart disabled due to context in which it is running
+2024-05-26 21:01:26 INFO  Version:21 - HV000001: Hibernate Validator 8.0.1.Final
+2024-05-26 21:01:26 INFO  BlogsApplicationTests:50 - Starting BlogsApplicationTests using Java 17.0.10 with PID 4378 (started by nikhil in /home/nikhil/Downloads/BlogApplication-main/back)
+2024-05-26 21:01:26 DEBUG BlogsApplicationTests:51 - Running with Spring Boot v3.2.4, Spring v6.1.5
+2024-05-26 21:01:26 INFO  BlogsApplicationTests:654 - No active profile set, falling back to 1 default profile: "default"
+2024-05-26 21:01:27 INFO  RepositoryConfigurationDelegate:139 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-26 21:01:27 INFO  RepositoryConfigurationDelegate:208 - Finished Spring Data repository scanning in 80 ms. Found 4 JPA repository interfaces.
+2024-05-26 21:01:28 INFO  LogHelper:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-26 21:01:28 INFO  Version:44 - HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-26 21:01:28 INFO  RegionFactoryInitiator:50 - HHH000026: Second-level cache disabled
+2024-05-26 21:01:29 INFO  SpringPersistenceUnitInfo:87 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-26 21:01:29 INFO  HikariDataSource:110 - HikariPool-1 - Starting...
+2024-05-26 21:01:29 INFO  HikariPool:565 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@66e12c3b
+2024-05-26 21:01:29 INFO  HikariDataSource:123 - HikariPool-1 - Start completed.
+2024-05-26 21:01:29 WARN  deprecation:153 - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-26 21:01:29 WARN  deprecation:101 - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2024-05-26 21:01:31 INFO  JtaPlatformInitiator:58 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-26 21:01:31 INFO  LocalContainerEntityManagerFactoryBean:437 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-26 21:01:31 INFO  QueryEnhancerFactory:49 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-26 21:01:32 WARN  JpaBaseConfiguration$JpaWebConfiguration:232 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-26 21:01:33 INFO  DefaultSecurityFilterChain:54 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@456d3914, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26a0068a, org.springframework.security.web.context.SecurityContextHolderFilter@2265a052, org.springframework.security.web.header.HeaderWriterFilter@494775f1, org.springframework.web.filter.CorsFilter@579b1d86, org.springframework.security.web.authentication.logout.LogoutFilter@42a08547, com.example.blogs.security.JwtAuthenticationFilter@1ef4179, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72090715, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@25bc36, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@783a2fec, org.springframework.security.web.session.SessionManagementFilter@430abcad, org.springframework.security.web.access.ExceptionTranslationFilter@7d8802cf, org.springframework.security.web.access.intercept.AuthorizationFilter@5967492a]
+2024-05-26 21:01:33 INFO  BlogsApplicationTests:56 - Started BlogsApplicationTests in 7.522 seconds (process running for 9.452)
+2024-05-26 21:01:33 INFO  UserImplementation:114 - Admin list retrieved successfully
+2024-05-26 21:01:34 INFO  LocalContainerEntityManagerFactoryBean:650 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-05-26 21:01:34 INFO  HikariDataSource:350 - HikariPool-1 - Shutdown initiated...
+2024-05-26 21:01:34 INFO  HikariDataSource:352 - HikariPool-1 - Shutdown completed.
