@@ -28,3 +28,31 @@ spec:
               value: "BlogApp"
             - name: DATABASE_PORT
               value: "3307"
+        - name: filebeat
+          image: docker.elastic.co/beats/filebeat:8.0.0
+          args:
+            - "-e"
+            - "-E"
+            - "filebeat.config.modules.enabled=false"
+            - "-E"
+            - "output.elasticsearch.hosts=[\"https://0bd42bcd73a847d2a4a0027009323fe1.us-central1.gcp.cloud.es.io:443\"]"
+            - "-E"
+            - "output.elasticsearch.username=elastic"
+            - "-E"
+            - "output.elasticsearch.password=yM1rFEPH0TMiGfs4YmwYldNN"
+            - "-E"
+            - "output.elasticsearch.ssl.enabled=true"
+            - "-E"
+            - "output.elasticsearch.ssl.verification_mode=none"
+            - "-E"
+            - "filebeat.inputs=[{type: 'log', paths: ['/app/logs/app.log']}]"
+            - "-E"
+            - "filebeat.modules.enabled=false"
+          volumeMounts:
+            - name: log-volume
+              mountPath: /app/logs
+              readOnly: true
+      volumes:
+        - name: log-volume
+          emptyDir: {}
+
