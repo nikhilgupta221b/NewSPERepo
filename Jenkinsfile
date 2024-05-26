@@ -4,6 +4,7 @@ pipeline {
     environment {
         FRONTEND_IMAGE = 'nikhilguptaiiitb/frontend-app'
         BACKEND_IMAGE = 'nikhilguptaiiitb/backend-app'
+        KUBECONFIG = '/path/to/kubeconfig' // Ensure this path points to your kubeconfig file
     }
 
     stages {
@@ -58,10 +59,11 @@ pipeline {
             }
         }
 
-        stage('Deploy with Ansible') {
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    sh "ansible-playbook -i hosts.ini deploy.yml"
+                    // Use kubectl to apply the Kubernetes configurations
+                    sh "kubectl apply -f k8s/"
                 }
             }
         }
